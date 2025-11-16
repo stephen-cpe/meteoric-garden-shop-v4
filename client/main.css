@@ -1,0 +1,120 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Font Definitions */
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+
+  /* Color Definitions (Light Mode) */
+  --background: #FFFFFF; /* Text White */
+  --foreground: #111111; /* Text Primary */
+  --primary: #7B1FA2; /* Brand Color */
+  --primary-foreground: #FFFFFF;
+  --secondary: #EEEEEE; /* Border Background */
+  --secondary-foreground: #111111;
+  --muted: #EEEEEE;
+  --muted-foreground: #666666; /* Text Secondary */
+  --accent: #F5F5F5; /* A lighter accent */
+  --accent-foreground: #111111;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: #EEEEEE; /* Border Background */
+  --input: #EEEEEE;
+  --ring: #7B1FA2; /* Brand Color for focus */
+
+  /* Custom Brand Colors */
+  --color-brown: #663300;
+  --color-dark-green: #003333;
+  --color-green: #00CC33;
+  --color-orange: #ff5722;
+
+  /* Other Theme Variables */
+  --radius: 0.625rem;
+}
+
+.dark {
+  /* You can define dark mode here if you want */
+  --background: #111111;
+  --foreground: #FFFFFF;
+  --primary: #7B1FA2;
+  --primary-foreground: #FFFFFF;
+  --secondary: #222222;
+  --secondary-foreground: #FFFFFF;
+  --muted: #222222;
+  --muted-foreground: #666666;
+  --border: #222222;
+  --input: #222222;
+  --ring: #7B1FA2;
+
+  /* Custom Brand Colors */
+  --color-brown: #663300;
+  --color-dark-green: #003333;
+  --color-green: #00CC33;
+  --color-orange: #ff5722;
+}
+
+@theme inline {
+  /* Font Mapping */
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-heading);
+
+  /* Color Mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--secondary); /* Using secondary for cards */
+  --color-card-foreground: var(--secondary-foreground);
+  --color-popover: var(--secondary);
+  --color-popover-foreground: var(--secondary-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Custom Color Mapping */
+  --color-brown: var(--color-brown);
+  --color-dark-green: var(--color-dark-green);
+  --color-green: var(--color-green);
+  --color-orange: var(--color-orange);
+
+  /* Radius Mapping */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    /* This now uses your --font-body ('Inter') */
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  /* This lets you use font-serif for headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@font-face {
+  font-family: 'Boomerang';
+  src: url('/fonts/Boomerang.ttf') format('truetype'),
+       url('/fonts/Boomerang.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
