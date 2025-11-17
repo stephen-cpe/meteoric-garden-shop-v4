@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
+
+const AdminLoginPage = React.lazy(() => import('./pages/AdminLoginPage'));
+const AdminOrdersPage = React.lazy(() => import('./pages/AdminOrdersPage'));
+const AdminOrderDetailPage = React.lazy(() => import('./pages/AdminOrderDetailPage'));
 
 export const navigate = (to) => {
   // Change the URL
@@ -16,7 +20,7 @@ export const Link = ({ to, children, className }) => {
     // Use our new navigate helper
     navigate(to);
   };
-  
+
   return (
     <a href={to} onClick={onClick} className={className}>
       {children}
@@ -27,23 +31,55 @@ export const Link = ({ to, children, className }) => {
 // Custom Router component 
 export const Router = ({ routes }) => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
-  
+
   useEffect(() => {
-    // Listen for URL changes
     const onLocationChange = () => {
       setCurrentPath(window.location.pathname);
     };
     window.addEventListener('popstate', onLocationChange);
 
-    // Cleanup
     return () => {
       window.removeEventListener('popstate', onLocationChange);
     };
   }, []);
 
-  // Find the component to render
-  // We use "routes['*']" as the 404 fallback 
-  const CurrentPage = routes[currentPath] || routes['*'];
+  useEffect(() => {
+    if (currentPath === '/admin' || currentPath === '/admin/') {
+       navigate('/admin/dashboard');
+    }
+  }, [currentPath]);
 
-  return <CurrentPage />;
+
+  let CurrentPage = routes[currentPath];
+
+
+  if (!CurrentPage) {
+    // Check if accessing admin routes
+    if (currentPath.startsWith('/admin')) {
+      const isAdminAuth = sessionStorage.getItem('adminAuth') === 'true';
+      if (!isAdminAuth) {
+        CurrentPage = AdminLoginPage;
+      }
+      else if (currentPath === '/admin' || currentPath === '/admin/') {
+        return null;
+      }
+      else if (currentPath.startsWith('/admin/orders/') && currentPath.split('/').length === 4) {
+        CurrentPage = AdminOrderDetailPage;
+      }
+      else if (currentPath === '/admin/orders') {
+        CurrentPage = AdminOrdersPage;
+      }
+    }
+  }
+  
+  // Fallback to 404
+  if (!CurrentPage) {
+    CurrentPage = routes['*'];
+  }
+
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}>
+      <CurrentPage />
+    </Suspense>
+  );
 };

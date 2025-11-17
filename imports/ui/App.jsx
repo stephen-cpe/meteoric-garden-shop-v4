@@ -6,7 +6,6 @@ const Loading = () => <div className="flex justify-center items-center h-screen"
 
 const lazyLoad = (importFunc) => {
   const Component = React.lazy(importFunc);
-
   return () => (
     <Suspense fallback={<Loading />}>
       <Component />
@@ -22,7 +21,7 @@ const routes = {
   '/register': lazyLoad(() => import("./pages/RegisterPage")),
   '/checkout': lazyLoad(() => import("./pages/CheckoutPage")),
   '/account': lazyLoad(() => import("./pages/AccountPage")),
-  '/admin': lazyLoad(() => import("./pages/AdminPage")),
+  '/admin/dashboard': lazyLoad(() => import("./pages/AdminDashboardPage")),
   '/blog': lazyLoad(() => import("./pages/BlogPage")),
   '/faq': lazyLoad(() => import("./pages/FAQPage")),
   

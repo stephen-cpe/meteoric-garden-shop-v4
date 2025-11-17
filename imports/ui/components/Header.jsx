@@ -5,6 +5,7 @@ import { Link, navigate } from "../Router"
 import { useTracker } from "meteor/react-meteor-data"
 import { Meteor } from "meteor/meteor"
 import { User } from "lucide-react"
+import StyledShopName from "../components/StyledShopName";
 
 const MeteorIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 640" x="0px" y="0px" className="w-12 h-12 mr-2 text-orange">
@@ -32,7 +33,7 @@ export default function Header({ currentPage = "home" }) {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="text-2xl font-bold text-orange font-serif flex items-center">
           <MeteorIcon />
-          <span style={{ fontFamily: "Boomerang" }}>Meteoric Garden Shop</span>
+          <StyledShopName />
         </Link>
 
         <nav className="flex items-center gap-1">

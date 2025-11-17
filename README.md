@@ -39,7 +39,7 @@ Follow these steps to run the project locally:
    meteor run
    ```
 
-5. Open your browser and navigate to `http://localhost:3000`
+5. Open your browser and navigate to `http://localhost:3000`. Or `http://localhost:3000/admin` to access admin page.
 
 ## Default Admin Account
 

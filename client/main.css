@@ -24,13 +24,17 @@
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: #EEEEEE; /* Border Background */
   --input: #EEEEEE;
-  --ring: #7B1FA2; /* Brand Color for focus */
 
   /* Custom Brand Colors */
   --color-brown: #663300;
   --color-dark-green: #003333;
   --color-green: #00CC33;
   --color-orange: #ff5722;
+  --color-dark-blue: #003d6b;
+  --color-blue: #005b96;
+  --color-red: #e0100e;
+  --color-slate-gray: #667085;
+  --color-light-steel-blue: #bfcfdf;
 
   /* Other Theme Variables */
   --radius: 0.625rem;
@@ -55,6 +59,11 @@
   --color-dark-green: #003333;
   --color-green: #00CC33;
   --color-orange: #ff5722;
+  --color-dark-blue: #003d6b;
+  --color-blue: #005b96;
+  --color-red: #e0100e;
+  --color-slate-gray: #667085;
+  --color-light-steel-blue: #bfcfdf;
 }
 
 @theme inline {
@@ -88,6 +97,11 @@
   --color-dark-green: var(--color-dark-green);
   --color-green: var(--color-green);
   --color-orange: var(--color-orange);
+  --color-dark-blue: var(--color-dark-blue);
+  --color-blue: var(--color-blue);
+  --color-red: var(--color-red);
+  --color-slate-gray: var(--color-slate-gray);
+  --color-light-steel-blue: var(--color-light-steel-blue);
 
   /* Radius Mapping */
   --radius-sm: calc(var(--radius) - 4px);
@@ -101,11 +115,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    /* This now uses your --font-body ('Inter') */
     @apply bg-background text-foreground font-sans;
   }
   
-  /* This lets you use font-serif for headings */
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
   }
